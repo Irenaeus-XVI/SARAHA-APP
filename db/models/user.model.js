@@ -26,7 +26,7 @@ const userSchema = new Schema({
         type: [{ type: mongoose.Types.ObjectId, ref: "Message" }],
 
     }
-}, 
+},
     { timestamps: true }
 
 )
