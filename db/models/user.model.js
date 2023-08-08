@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 
 const userSchema = new Schema({
@@ -21,8 +21,12 @@ const userSchema = new Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    messages: {
+        type: [{ type: mongoose.Types.ObjectId, ref: "Message" }],
+
     }
-},
+}, 
     { timestamps: true }
 
 )
