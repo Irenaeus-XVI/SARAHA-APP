@@ -10,5 +10,7 @@ const port = 3000
 connection();
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/message", messageRoutes);
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use("*", (req, res) => {
+    res.json({ Error: `Invalid Url ${req.originalUrl}` });
+})
 app.listen(port, () => console.log(`Server is listening on port ${port}!`))
