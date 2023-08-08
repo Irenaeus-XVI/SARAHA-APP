@@ -5,7 +5,7 @@ import { auth } from '../../middleware/auth.js';
 
 
 //NOTE - addMessage
-messageRoutes.post("/addMessage", auth, addMessage);
-messageRoutes.get("/getMessages", auth, getMessages);
+messageRoutes.post("/add", auth, addMessage);
+messageRoutes.get("/", auth, getMessages);
 
 export default messageRoutes; 
