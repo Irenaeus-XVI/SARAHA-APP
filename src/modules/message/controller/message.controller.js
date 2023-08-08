@@ -1,9 +1,10 @@
 import { messageModel } from "../../../../db/models/message.model.js";
 import { userModel } from "../../../../db/models/user.model.js";
 import jwt from 'jsonwebtoken';
+import { handleAsyncError } from "../../../middleware/handleAsyncError.js";
 
 
-export const addMessage = async (req, res) => {
+export const addMessage = handleAsyncError(async (req, res) => {
     try {
         let { messageText, receivedId } = req.body;
         const existUser = await userModel.findById({ _id: receivedId });
@@ -18,11 +19,11 @@ export const addMessage = async (req, res) => {
         res.status(400).json({ Error: error });
 
     }
-}
+});
 
 
 
-export const getMessages = async (req, res) => {
+export const getMessages = handleAsyncError(async (req, res) => {
 
     try {
         let allMessages = await userModel.findOne({ _id: req.userId }).select(" -_id messages").populate("messages");
@@ -32,4 +33,4 @@ export const getMessages = async (req, res) => {
 
     }
 
-}
+});

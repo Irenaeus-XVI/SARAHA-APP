@@ -2,8 +2,9 @@ import { userModel } from '../../../../db/models/user.model.js'
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken';
 import { sendEmail } from "../../../email/sendemail.js";
+import { handleAsyncError } from '../../../middleware/handleAsyncError.js';
 
-export const signUp = async (req, res) => {
+export const signUp = handleAsyncError(async (req, res) => {
 
 
     try {
@@ -33,12 +34,12 @@ export const signUp = async (req, res) => {
         res.status(500).json({ "Error": error });
     }
 
-}
+});
 
 
 
 
-export const signIn = async (req, res) => {
+export const signIn = handleAsyncError(async (req, res) => {
     try {
         let { email, password } = req.body;
         let existUser = await userModel.findOne({ email });
@@ -66,12 +67,12 @@ export const signIn = async (req, res) => {
         res.status(500).json({ "Error": error });
     }
 
-}
+});
 
 
 
 
-export const verifyEmail = (req, res) => {
+export const verifyEmail = handleAsyncError(async (req, res) => {
 
     let { token } = req.params;
 
@@ -82,4 +83,4 @@ export const verifyEmail = (req, res) => {
         res.status(200).json({ Message: "User Verified Successfully.", user });
     })
 
-}
+});
