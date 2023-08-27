@@ -5,6 +5,9 @@ import { sendEmail } from "../../../email/sendemail.js";
 import { handleAsyncError } from '../../../middleware/handleAsyncError.js';
 import { AppError } from '../../utils/appError.js';
 
+
+
+
 export const signUp = handleAsyncError(async (req, res, next) => {
 
 
@@ -34,10 +37,6 @@ export const signUp = handleAsyncError(async (req, res, next) => {
 
 
 });
-
-
-
-
 export const signIn = handleAsyncError(async (req, res, next) => {
 
     let { email, password } = req.body;
@@ -70,7 +69,7 @@ export const signIn = handleAsyncError(async (req, res, next) => {
 
 
 
-export const verifyEmail = handleAsyncError(async (req, res,next) => {
+export const verifyEmail = handleAsyncError(async (req, res, next) => {
 
     let { token } = req.params;
 
