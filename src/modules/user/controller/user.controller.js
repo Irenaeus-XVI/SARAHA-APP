@@ -49,7 +49,7 @@ export const signIn = handleAsyncError(async (req, res, next) => {
         if (existUser) {
             let matched = bcrypt.compareSync(password, existUser.password);
             if (matched) {
-                let token = Jwt.sign({ id: existUser._id }, process.env.SECRET_KEY);
+                let token = Jwt.sign({ id: existUser._id }, process.env.SECRETKEY);
                 res.status(200).json({ Message: "Welcome.", token });
             } else {
                 next(new AppError('Password Is Wrong.', 400));
